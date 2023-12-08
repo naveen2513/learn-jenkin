@@ -1,0 +1,27 @@
+pipeline {
+ agent {
+     node {
+       label 'workstation'
+  }
+ }
+ options {
+     ansiColor ('xterm')
+    }
+    parameters {
+            choice(name: 'env', choices: ['dev', 'prod',], description: 'Pick environment')
+            }
+
+  stages {
+       stage{'one'} {
+            steps {
+           echo " hello world"
+                  }
+            }
+       }
+       post {
+       always {
+        sh 'echo post cleanup steps'
+        }
+        }
+
+  }
